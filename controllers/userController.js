@@ -53,3 +53,12 @@ exports.create_user_post = [
     }
   }),
 ];
+
+// exports.give_user_membership = asyncHandler( async (req, res) => {
+//     const userCode = req.body.password.toLowerCase();
+//     if(userCode !== "letmein"){
+//         res.render("join_club", {message: "Wrong code."})
+//     }
+
+//     User.findByIdAndUpdate()
+// });

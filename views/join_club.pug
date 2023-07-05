@@ -1,0 +1,11 @@
+extends layout
+
+block content
+    h1 Join the Membership club 
+    p psssttt.... the secret code is letmein
+
+    form(action="/joinclub", method="post")
+        label(for="secretCode") Secret Code:
+        input(type="password", id="secretCode", name="secretCode", required, minlength="1")
+
+        button(type="submit") Get membership
