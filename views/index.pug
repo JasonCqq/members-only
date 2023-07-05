@@ -9,6 +9,8 @@ block content
 
   if currentUser 
     p Logged in as #{currentUser.username}
+    a(href="/logout") Log Out 
+    br
     form(action="/" method="POST")
       label(for="title") Title:
       input(type="text" name="title" id="title" minlength="3" maxlength="50" required)
@@ -32,6 +34,8 @@ block content
       p Author: #{message.author}
       p Date: #{message.timestamp}
       br
+      if adminAccess
+        a(href=`/delete/${message._id}`) Delete Message
   else if !currentUser && !member
     each message in messages  
       p Title: #{message.title}

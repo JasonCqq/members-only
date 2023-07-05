@@ -21,7 +21,7 @@ mongoose.set("strictQuery", false);
 const mongoDB = process.env.DATABASE_KEY;
 main().catch((err) => console.log(err));
 async function main() {
-  await mongoose.connect(`${mongoDB}/members-only`);
+  await mongoose.connect(`${mongoDB}`);
 }
 
 var app = express();

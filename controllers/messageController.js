@@ -42,18 +42,28 @@ exports.show_messages = asyncHandler(async (req, res) => {
   const allMessages = await Message.find().sort({ timestamp: -1 }).exec();
 
   let membership;
+  let admin;
   if (req.user) {
     const user = await User.findById(req.user._id);
     if (user) {
       membership = user.membershipStatus;
+      admin = user.admin;
     }
   } else if (!req.user) {
     membership = false;
+    admin = false;
   }
 
   res.render("index", {
     title: "The Members Only Club",
     messages: allMessages,
     member: membership,
+    adminAccess: admin,
   });
+});
+
+exports.delete_message = asyncHandler(async (req, res) => {
+  await Message.findByIdAndDelete(req.params.id);
+
+  res.redirect("/");
 });

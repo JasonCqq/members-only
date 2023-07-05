@@ -27,6 +27,7 @@ exports.create_user_post = [
     .trim()
     .isLength({ min: 1 })
     .escape(),
+  body("admin").trim().escape(),
 
   asyncHandler(async (req, res) => {
     const errors = validationResult(req);
@@ -40,11 +41,20 @@ exports.create_user_post = [
         if (err) {
           return res.status(500).json({ error: "Error hashing password" });
         }
+
+        let adminAccess;
+        if (req.body.admin === "yes") {
+          adminAccess = true;
+        } else if (req.body.admin !== "yes") {
+          adminAccess = false;
+        }
+
         const user = new User({
           username: req.body.email,
           password: hashedPassword,
           fullName: req.body.fullName,
           membershipStatus: false,
+          admin: adminAccess,
         });
 
         await user.save();
