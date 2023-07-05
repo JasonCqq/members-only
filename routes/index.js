@@ -5,9 +5,7 @@ const user_controller = require("../controllers/userController");
 const message_controller = require("../controllers/messageController");
 
 /* GET home page. */
-router.get("/", function (req, res) {
-  res.render("index", { title: "The Members Only Club" });
-});
+router.get("/", message_controller.show_messages);
 
 router.post("/", message_controller.create_message_post);
 

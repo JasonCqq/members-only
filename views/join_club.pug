@@ -5,13 +5,16 @@ block content
         p You are current logged in as #{currentUser.username}
 
     h1 Join the Membership club 
-    p psssttt.... the secret code is letmein
 
-    form(action="/joinclub", method="post")
-        label(for="secretCode") Secret Code:
-        input(type="password", id="secretCode", name="secretCode", required, minlength="1")
+    if currentUser
+        p psssttt.... the secret code is letmein
+        form(action="/joinclub", method="post")
+            label(for="secretCode") Secret Code:
+            input(type="password", id="secretCode", name="secretCode", required, minlength="1")
 
-        button(type="submit") Get membership
+            button(type="submit") Get membership
+    else 
+        p Please log in or create an account to be a member
 
     a(href="/") Home 
     br

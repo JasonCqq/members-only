@@ -21,5 +21,22 @@ block content
     a(href="/signup") Sign Up 
     br
     a(href="/login") Log In 
+    br
 
   a(href="/joinclub") Get Membership 
+
+  if currentUser && member
+    each message in messages 
+      p(style={color:'red', fontSize: '15px'}) Title: #{message.title}
+      p Message: #{message.text}  
+      p Author: #{message.author}
+      p Date: #{message.timestamp}
+      br
+  else if !currentUser && !member
+    each message in messages  
+      p Title: #{message.title}
+      p Message: #{message.text}  
+      p Author: Members Only
+      p Date: Members Only
+      br
+      
