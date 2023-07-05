@@ -54,11 +54,13 @@ exports.create_user_post = [
   }),
 ];
 
-// exports.give_user_membership = asyncHandler( async (req, res) => {
-//     const userCode = req.body.password.toLowerCase();
-//     if(userCode !== "letmein"){
-//         res.render("join_club", {message: "Wrong code."})
-//     }
+exports.give_user_membership = asyncHandler(async (req, res) => {
+  const userCode = req.body.password;
+  if (userCode !== "letmein") {
+    res.render("join_club", { message: "Wrong code." });
+  }
 
-//     User.findByIdAndUpdate()
-// });
+  await User.findByIdAndUpdate(req.user._id, { membershipStatus: true }).exec();
+
+  res.redirect("/");
+});

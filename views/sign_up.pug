@@ -3,6 +3,8 @@ extends layout
 block content
   h1= title
 
+  a(href="/") Home
+
   if errors 
     each error in errors 
       p #{error}

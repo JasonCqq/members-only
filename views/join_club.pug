@@ -1,6 +1,9 @@
 extends layout
 
 block content
+    if currentUser
+        p You are current logged in as #{currentUser.username}
+
     h1 Join the Membership club 
     p psssttt.... the secret code is letmein
 
@@ -9,3 +12,10 @@ block content
         input(type="password", id="secretCode", name="secretCode", required, minlength="1")
 
         button(type="submit") Get membership
+
+    a(href="/") Home 
+    br
+    a(href="/signup") Sign Up 
+    br
+    a(href="/login") Log In 
+    br

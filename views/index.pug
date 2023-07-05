@@ -2,4 +2,24 @@ extends layout
 
 block content
   h1= title
-  p Welcome to #{title}
+
+  if errors 
+    each error in errors 
+      p #{error}
+
+  if currentUser 
+    p Logged in as #{currentUser.username}
+    form(action="/" method="POST")
+      label(for="title") Title:
+      input(type="text" name="title" id="title" minlength="3" maxlength="50" required)
+
+      label(for="text") Text: 
+      textarea(name="text" id="text" minlength="1" required)
+
+      button(type="submit") Post Message
+  else 
+    a(href="/signup") Sign Up 
+    br
+    a(href="/login") Log In 
+
+  a(href="/joinclub") Get Membership 
